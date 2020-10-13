@@ -5,32 +5,27 @@ Vue.createApp({
     };
   },
   watch: {
-    result(value) {
+    checkResult() {
       const that = this;
-      if (value === 37) {
-        setTimeout(function () {
-          that.result = 0;
-        }, 5000);
-      }
+      setTimeout(function () {
+        that.result = 0;
+      }, 5000);
     },
   },
   computed: {
     checkResult() {
-      if (this.result === 0) {
-        return '';
-      } else if (this.result < 37) {
+      if (this.result < 37) {
         return 'Not there yet';
+      } else if (this.result === 37) {
+        return this.result;
       } else if (this.result > 37) {
         return 'Too much!';
       }
     },
   },
   methods: {
-    addFive() {
-      return (this.result += 5);
-    },
-    addOne() {
-      return this.result++;
+    addNum(number) {
+      return (this.result += number);
     },
   },
 }).mount('#assignment');
